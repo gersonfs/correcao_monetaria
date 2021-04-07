@@ -34,7 +34,7 @@ jobs:
     - name: composer install
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: |
-          cd app && composer install
+          cd app && composer install --no-progress --no-suggest -o --no-ansi --no-interaction
 
     - name: Run PHPUnit
       run: |
