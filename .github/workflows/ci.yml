@@ -1,4 +1,4 @@
-name: CakePHP App CI
+name: Correção Monetário CI
 
 on:
   push:
@@ -22,7 +22,17 @@ jobs:
         extensions: mbstring, intl, pdo_mysql
         coverage: none
 
+    - name: Cache Composer
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          app/vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('app/composer.lock') }}-${{ hashFiles('app/composer.json') }}
+        restore-keys: ${{ runner.os }}-composer
+
     - name: composer install
+      if: steps.composer-cache.outputs.cache-hit != 'true'
       run: |
           cd app && composer install
 
