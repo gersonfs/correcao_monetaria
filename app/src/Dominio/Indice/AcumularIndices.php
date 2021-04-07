@@ -10,7 +10,7 @@ class AcumularIndices
     /**
      * @param \App\Dominio\Indice\Indice[] $indices
      */
-    public function acumularFromIndice(array $indices)
+    public function acumularFromIndice(array $indices): float
     {
         $percentuais = array_map(fn ($indice) => $indice->getPercentual(), $indices);
         return $this->acumular($percentuais);

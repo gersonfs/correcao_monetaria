@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Dominio\Indice;
+namespace App\Test\TestCase\Dominio\Indice;
 
+use App\Dominio\Indice\AcumularIndices;
+use App\Dominio\Indice\Indice;
+use App\Dominio\Indice\TipoIndice;
 use Cake\TestSuite\TestCase;
 
 class AcumularIndicesTest extends TestCase

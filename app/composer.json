@@ -12,10 +12,12 @@
         "mobiledetect/mobiledetectlib": "^2.8"
     },
     "require-dev": {
+        "cakedc/cakephp-phpstan": "^1.0",
         "cakephp/bake": "^2.3",
         "cakephp/cakephp-codesniffer": "~4.2.0",
         "cakephp/debug_kit": "^4.4",
         "josegonzalez/dotenv": "^3.2",
+        "phpstan/phpstan": "^0.12.83",
         "phpunit/phpunit": "~8.5.0 || ^9.3",
         "psy/psysh": "@stable"
     },
@@ -45,7 +47,11 @@
         "cs-check": "phpcs --colors -p  src/ tests/",
         "cs-fix": "phpcbf --colors -p src/ tests/",
         "stan": "phpstan analyse",
-        "test": "phpunit --colors=always"
+        "test": "phpunit --colors=always",
+        "precommit": [
+            "@stan",
+            "@test"
+        ]
     },
     "prefer-stable": true,
     "config": {

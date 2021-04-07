@@ -7,6 +7,10 @@ namespace App\Dominio\Indice;
 class TipoIndice
 {
     private string $tipo;
+
+    /**
+     * @var string[]
+     */
     private array $tipos = ['IGPM', 'TR', 'INPC', 'IPC/IBGE', 'IPC/FIPE', 'INPC/IBGE', 'IPC-R-IBGE', 'IPCA-E/ibge(%)', 'UFIR', 'SELIC'];
 
     private function __construct(string $tipo)

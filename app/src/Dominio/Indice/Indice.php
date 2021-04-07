@@ -34,7 +34,7 @@ class Indice
 
     public function getFator(): string
     {
-        return (string)((float)$this->percentual) / 100;
+        return (string)((float)$this->percentual / 100);
     }
 
 }
