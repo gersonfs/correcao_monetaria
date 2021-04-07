@@ -1,0 +1,31 @@
+name: CakePHP App CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  testsuite:
+    runs-on: ubuntu-latest
+    name: Testes PHP
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        extensions: mbstring, intl, pdo_mysql
+        coverage: none
+
+    - name: composer install
+      run: |
+          cd app && composer install
+
+    - name: Run PHPUnit
+      run: |
+          cd app && composer test
