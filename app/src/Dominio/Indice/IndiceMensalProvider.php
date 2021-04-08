@@ -3,7 +3,6 @@
 
 namespace App\Dominio\Indice;
 
-
 use App\Dominio\Indice\TipoIndice;
 
 interface IndiceMensalProvider

@@ -9,6 +9,10 @@ use App\Dominio\AtualizacaoMonetaria\Parcela;
 class AtualizacaoMonetaria
 {
     private string $titulo;
+
+    /**
+     * @var \App\Dominio\AtualizacaoMonetaria\Parcela[]
+     */
     private array $parcelas;
 
     public function __construct(string $titulo)
@@ -17,7 +21,7 @@ class AtualizacaoMonetaria
         $this->parcelas = [];
     }
 
-    public function adicionarParcela(Parcela $parcela)
+    public function adicionarParcela(Parcela $parcela): void
     {
         $this->parcelas[] = $parcela;
     }

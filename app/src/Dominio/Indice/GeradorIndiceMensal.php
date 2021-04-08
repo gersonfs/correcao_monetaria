@@ -58,7 +58,7 @@ class GeradorIndiceMensal
         );
     }
 
-    public function getDataFimMes(\DateTimeImmutable $dataAtual, \DateTimeImmutable $dataFim)
+    public function getDataFimMes(\DateTimeImmutable $dataAtual, \DateTimeImmutable $dataFim): \DateTimeImmutable
     {
         $isUltimoMes = $dataAtual->format('Y-m') === $dataFim->format('Y-m');
         if($isUltimoMes) {

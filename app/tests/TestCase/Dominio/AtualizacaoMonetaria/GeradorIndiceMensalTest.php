@@ -4,6 +4,7 @@ namespace App\Test\TestCase\Dominio\AtualizacaoMonetaria;
 
 use App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal;
 use App\Dominio\Indice\GeradorIndiceMensal;
+use App\Dominio\Indice\IndiceMensalProviderMemoria;
 use App\Dominio\Indice\TipoIndice;
 use Cake\TestSuite\TestCase;
 
@@ -12,7 +13,7 @@ class GeradorIndiceMensalTest extends TestCase
 
     public function test_gerar()
     {
-        $gerador = new GeradorIndiceMensal();
+        $gerador = new GeradorIndiceMensal(new IndiceMensalProviderMemoria());
 
         $igpm = TipoIndice::buildIGPM();
         $indices = $gerador->gerar(
