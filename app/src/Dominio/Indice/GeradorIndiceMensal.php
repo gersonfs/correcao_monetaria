@@ -10,6 +10,14 @@ use App\Dominio\Indice\TipoIndice;
 class GeradorIndiceMensal
 {
 
+    private IndiceMensalProvider $provider;
+
+    public function __construct(IndiceMensalProvider $provider)
+    {
+        $this->provider = $provider;
+    }
+
+
     /**
      * @return \App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal[]
      */
@@ -29,7 +37,12 @@ class GeradorIndiceMensal
         $dataAtual = $dataInicio;
         while ($dataAtual <= $dataFim) {
             $dataFimMes = $this->getDataFimMes($dataAtual, $dataFim);
-            $indices[] = new IndiceMensal($tipoIndice, $dataAtual, $dataFimMes,0, $proRata);
+            $indice = $this->provider->getIndice(
+                $tipoIndice,
+                (int)$dataAtual->format('m'),
+                (int)$dataAtual->format('Y'),
+            );
+            $indices[] = new IndiceMensal($tipoIndice, $dataAtual, $dataFimMes,$indice, $proRata);
             $dataAtual = $this->pularMes($dataAtual);
         }
 

@@ -15,4 +15,5 @@
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml.phpunit.result.cache
+.idea/**/dbnavigator.xml
+.phpunit.result.cache
