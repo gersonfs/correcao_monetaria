@@ -11,7 +11,7 @@ class TipoIndice
     /**
      * @var string[]
      */
-    private array $tipos = ['IGPM', 'TR', 'INPC', 'IPC/IBGE', 'IPC/FIPE', 'INPC/IBGE', 'IPC-R-IBGE', 'IPCA-E/ibge(%)', 'UFIR', 'SELIC'];
+    private array $tipos = ['IGPM', 'TR', 'INPC', 'IPC/IBGE', 'IPC/FIPE', 'INPC/IBGE', 'IPC-R-IBGE', 'IPCA-E/ibge(%)', 'UFIR', 'SELIC', 'OUTRO'];
 
     private function __construct(string $tipo)
     {
