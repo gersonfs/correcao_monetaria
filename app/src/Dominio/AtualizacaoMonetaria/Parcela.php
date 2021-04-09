@@ -6,8 +6,7 @@ namespace App\Dominio\AtualizacaoMonetaria;
 
 use App\Dominio\AtualizacaoMonetaria\Parcela\Juros;
 use App\Dominio\Indice\AcumularIndices;
-use App\Dominio\Indice\GeradorIndiceMensal;
-use App\Dominio\Indice\IndiceProviderMemoria;
+use App\Dominio\Indice\GeradorIndice;
 
 class Parcela
 {
@@ -62,7 +61,7 @@ class Parcela
         return $this->valor;
     }
 
-    public function getIndiceCorrecao(GeradorIndiceMensal $gerador, int $casasDecimais): float
+    public function getIndiceCorrecao(GeradorIndice $gerador, int $casasDecimais): float
     {
         $indices = [];
         foreach ($this->indices as $periodo) {

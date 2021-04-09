@@ -8,7 +8,7 @@ use App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal;
 use App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo;
 use App\Dominio\Indice\TipoIndice;
 
-class GeradorIndiceMensal
+class GeradorIndiceMensal implements GeradorIndice
 {
 
     private IndiceProvider $provider;
@@ -17,7 +17,6 @@ class GeradorIndiceMensal
     {
         $this->provider = $provider;
     }
-
 
     /**
      * @return \App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal[]
