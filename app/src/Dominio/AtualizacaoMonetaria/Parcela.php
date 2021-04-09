@@ -80,4 +80,9 @@ class Parcela
         return round($this->valor * $indice, $casasDecimais);
     }
 
+    public function getValorCorrecao(float $indice, int $casasDecimais = 2): float
+    {
+        return round($this->valor * $indice, $casasDecimais) - $this->valor;
+    }
+
 }

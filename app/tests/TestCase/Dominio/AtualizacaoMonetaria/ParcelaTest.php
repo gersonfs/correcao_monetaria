@@ -55,5 +55,6 @@ class ParcelaTest extends TestCase
         $indice = $parcela->getIndiceCorrecao($gerador, 7);
         $this->assertEquals(1.02498740, $indice);
         $this->assertEquals(1024.99, round($parcela->getValorCorrigido($indice), 2));
+        $this->assertEquals(24.99, round($parcela->getValorCorrecao($indice), 2));
     }
 }
