@@ -43,7 +43,7 @@ class GeradorIndiceMensal
                 $tipoIndice,
                 $dataAtual,
             );
-            $indices[] = new IndiceMensal($tipoIndice, $dataAtual, $dataFimMes,$indice, $proRata);
+            $indices[] = new IndiceMensal($tipoIndice, $dataAtual, $dataFimMes, $indice, $proRata);
             $dataAtual = $this->pularMes($dataAtual);
         }
 

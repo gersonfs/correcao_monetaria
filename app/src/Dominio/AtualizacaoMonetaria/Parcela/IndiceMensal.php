@@ -11,14 +11,14 @@ class IndiceMensal
     private TipoIndice $tipo;
     private \DateTimeImmutable $dataInicio;
     private \DateTimeImmutable $dataFim;
-    private float $indice;
+    private string $indice;
     private bool $proRata;
 
     public function __construct(
         TipoIndice $tipo,
         \DateTimeImmutable $dataInicio,
         \DateTimeImmutable $datafim,
-        float $indice,
+        string $indice,
         bool $proRata)
     {
         $this->tipo = $tipo;
@@ -43,7 +43,7 @@ class IndiceMensal
         return $this->dataFim;
     }
 
-    public function getIndice(): float
+    public function getIndice(): string
     {
         return $this->indice;
     }
