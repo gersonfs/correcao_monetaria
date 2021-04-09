@@ -3,8 +3,9 @@
 namespace App\Test\TestCase\Dominio\AtualizacaoMonetaria;
 
 use App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal;
+use App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo;
 use App\Dominio\Indice\GeradorIndiceMensal;
-use App\Dominio\Indice\IndiceMensalProviderMemoria;
+use App\Dominio\Indice\IndiceProviderMemoria;
 use App\Dominio\Indice\TipoIndice;
 use Cake\TestSuite\TestCase;
 
@@ -13,14 +14,16 @@ class GeradorIndiceMensalTest extends TestCase
 
     public function test_gerar()
     {
-        $gerador = new GeradorIndiceMensal(new IndiceMensalProviderMemoria());
+        $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
 
         $igpm = TipoIndice::buildIGPM();
         $indices = $gerador->gerar(
-            $igpm,
-            new \DateTimeImmutable('2020-01-04'),
-            new \DateTimeImmutable('2020-03-28'),
-            true
+            new IndicePeriodo(
+                $igpm,
+                new \DateTimeImmutable('2020-01-04'),
+                new \DateTimeImmutable('2020-03-28'),
+                true
+            )
         );
 
         $this->assertCount(3, $indices);

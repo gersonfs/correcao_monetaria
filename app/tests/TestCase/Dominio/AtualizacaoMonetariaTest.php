@@ -6,7 +6,7 @@ use App\Dominio\AtualizacaoMonetaria;
 use App\Dominio\AtualizacaoMonetaria\Parcela;
 use App\Dominio\AtualizacaoMonetaria\Parcela\Juros;
 use App\Dominio\Indice\GeradorIndiceMensal;
-use App\Dominio\Indice\IndiceMensalProviderMemoria;
+use App\Dominio\Indice\IndiceProviderMemoria;
 use App\Dominio\Indice\TipoIndice;
 use Cake\TestSuite\TestCase;
 
@@ -20,14 +20,14 @@ class AtualizacaoMonetariaTest extends TestCase
         $dataInicio = new \DateTimeImmutable('2011-04-07');
         $dataFim = new \DateTimeImmutable('2020-04-30');
 
-        $gerador = new GeradorIndiceMensal(new IndiceMensalProviderMemoria());
-
-        $indices = $gerador->gerar(
-            TipoIndice::buildIGPM(),
-            $dataInicio,
-            $dataFim,
-            true
-        );
+        $indices = [
+            new Parcela\IndicePeriodo(
+                TipoIndice::buildIGPM(),
+                $dataInicio,
+                $dataFim,
+                true
+            )
+        ];
 
         $juros = new Juros(
             1,
@@ -40,6 +40,7 @@ class AtualizacaoMonetariaTest extends TestCase
             $dataInicio,
             $dataFim,
             'IPTU',
+            1000,
             $indices,
             $juros
         ));
@@ -49,7 +50,7 @@ class AtualizacaoMonetariaTest extends TestCase
 
     public function test_get_data_fim_mes_futuro()
     {
-        $gerador = new GeradorIndiceMensal(new IndiceMensalProviderMemoria());
+        $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
         $dataFim = $gerador->getDataFimMes(
             new \DateTimeImmutable('2020-01-01'),
             new \DateTimeImmutable('2020-02-01'),
@@ -59,7 +60,7 @@ class AtualizacaoMonetariaTest extends TestCase
 
     public function test_get_data_fim_mesmo_mes()
     {
-        $gerador = new GeradorIndiceMensal(new IndiceMensalProviderMemoria());
+        $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
         $dataFim = $gerador->getDataFimMes(
             new \DateTimeImmutable('2020-01-01'),
             new \DateTimeImmutable('2020-01-15'),
@@ -69,7 +70,7 @@ class AtualizacaoMonetariaTest extends TestCase
 
     public function test_pular_mes()
     {
-        $gerador = new GeradorIndiceMensal(new IndiceMensalProviderMemoria());
+        $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
         $proximoMes = $gerador->pularMes(new \DateTimeImmutable('2020-03-01'));
         $this->assertEquals(new \DateTimeImmutable('2020-04-01'), $proximoMes);
 

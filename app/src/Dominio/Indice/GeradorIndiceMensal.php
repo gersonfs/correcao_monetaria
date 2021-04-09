@@ -5,14 +5,15 @@ namespace App\Dominio\Indice;
 
 
 use App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal;
+use App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo;
 use App\Dominio\Indice\TipoIndice;
 
 class GeradorIndiceMensal
 {
 
-    private IndiceMensalProvider $provider;
+    private IndiceProvider $provider;
 
-    public function __construct(IndiceMensalProvider $provider)
+    public function __construct(IndiceProvider $provider)
     {
         $this->provider = $provider;
     }
@@ -21,12 +22,13 @@ class GeradorIndiceMensal
     /**
      * @return \App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal[]
      */
-    public function gerar(
-        TipoIndice $tipoIndice,
-        \DateTimeImmutable $dataInicio,
-        \DateTimeImmutable $dataFim,
-        bool $proRata): array
+    public function gerar(IndicePeriodo $periodo): array
     {
+        $dataInicio = $periodo->getDiaInicio();
+        $dataFim = $periodo->getDiaFim();
+        $tipoIndice = $periodo->getTipo();
+        $proRata = $periodo->isProRata();
+
         $dataInicio = $dataInicio->setTime(0, 0, 0);
         $dataFim = $dataFim->setTime(0, 0, 0);
         if ($dataFim < $dataInicio) {
@@ -39,8 +41,7 @@ class GeradorIndiceMensal
             $dataFimMes = $this->getDataFimMes($dataAtual, $dataFim);
             $indice = $this->provider->getIndice(
                 $tipoIndice,
-                (int)$dataAtual->format('m'),
-                (int)$dataAtual->format('Y'),
+                $dataAtual,
             );
             $indices[] = new IndiceMensal($tipoIndice, $dataAtual, $dataFimMes,$indice, $proRata);
             $dataAtual = $this->pularMes($dataAtual);

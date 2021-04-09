@@ -27,4 +27,31 @@ class IndiceMensal
         $this->indice = $indice;
         $this->proRata = $proRata;
     }
+
+    public function getTipo(): TipoIndice
+    {
+        return $this->tipo;
+    }
+
+    public function getDataInicio(): \DateTimeImmutable
+    {
+        return $this->dataInicio;
+    }
+
+    public function getDataFim(): \DateTimeImmutable
+    {
+        return $this->dataFim;
+    }
+
+    public function getIndice(): float
+    {
+        return $this->indice;
+    }
+
+    public function isProRata(): bool
+    {
+        return $this->proRata;
+    }
+
+
 }
