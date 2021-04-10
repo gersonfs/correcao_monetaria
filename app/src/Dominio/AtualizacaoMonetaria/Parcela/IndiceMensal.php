@@ -45,7 +45,21 @@ class IndiceMensal
 
     public function getIndice(): string
     {
-        return $this->indice;
+        if (!$this->isProRata()) {
+            return $this->indice;
+        }
+
+        $quantidadeDiasMes = $this->dataInicio->format('t');
+        $diff = $this->dataFim->diff($this->dataInicio);
+        $diasIntervalo = $diff->days + 1;
+        $calcularProRata = $diasIntervalo < $quantidadeDiasMes;
+
+        if (!$calcularProRata) {
+            return $this->indice;
+        }
+
+        $indiceDiario = $this->indice / 30;
+        return (string)($indiceDiario * $diasIntervalo);
     }
 
     public function isProRata(): bool
