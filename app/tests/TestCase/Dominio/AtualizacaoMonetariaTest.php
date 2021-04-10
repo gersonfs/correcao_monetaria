@@ -15,7 +15,10 @@ class AtualizacaoMonetariaTest extends TestCase
 {
     public function test_construct(): void
     {
-        $atualizacao = new AtualizacaoMonetaria('Relação de Despesas');
+        $atualizacao = new AtualizacaoMonetaria(
+            'Relação de Despesas',
+            new \DateTimeImmutable('2011-04-07')
+        );
 
         $dataInicio = new \DateTimeImmutable('2011-04-07');
         $dataFim = new \DateTimeImmutable('2020-04-30');
@@ -76,5 +79,19 @@ class AtualizacaoMonetariaTest extends TestCase
 
         $proximoMes = $gerador->pularMes(new \DateTimeImmutable('2020-03-05'));
         $this->assertEquals(new \DateTimeImmutable('2020-04-01'), $proximoMes);
+    }
+
+    public function test_get_sugestao_data_inicio_juros(): void
+    {
+        $dataCitacao = new \DateTimeImmutable('2011-04-07');
+        $dataInicioParcela = new \DateTimeImmutable('2011-04-01');
+        $atualizacao = new AtualizacaoMonetaria(
+            'Relação de Despesas',
+            $dataCitacao
+        );
+        $this->assertEquals($dataCitacao, $atualizacao->getSugestaoDataInicioJuros($dataInicioParcela));
+
+        $dataInicioParcela = new \DateTimeImmutable('2011-05-01');
+        $this->assertEquals($dataInicioParcela, $atualizacao->getSugestaoDataInicioJuros($dataInicioParcela));
     }
 }

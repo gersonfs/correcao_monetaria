@@ -49,6 +49,8 @@
         "stan": "phpstan analyse",
         "test": "phpunit --colors=always",
         "precommit": [
+            "@cs-fix",
+            "@cs-check",
             "@stan",
             "@test"
         ]
