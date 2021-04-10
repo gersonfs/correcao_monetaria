@@ -25,8 +25,8 @@ class IndiceProviderMemoria implements IndiceProvider
     {
         $achou = array_filter(
             $this->indices,
-            fn($indice) => $indice['mes'] == $data->format('m')
-                           && $indice['ano'] == $data->format('Y')
+            fn($indice) => $indice['data']->format('m') == $data->format('m')
+                           && $indice['data']->format('Y') == $data->format('Y')
         );
         if ($achou) {
             $primeiroResultado = array_pop($achou);

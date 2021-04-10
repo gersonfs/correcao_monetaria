@@ -10,7 +10,7 @@ use Cake\TestSuite\TestCase;
 class AcumularIndicesTest extends TestCase
 {
 
-    public function test_acumular_from_indices()
+    public function test_acumular_from_indices(): void
     {
         $service = new AcumularIndices();
         $igpm = TipoIndice::buildIGPM();
@@ -22,7 +22,7 @@ class AcumularIndicesTest extends TestCase
         $this->assertEquals('1.07661', round($service->acumularFromIndice($indices), 5));
     }
 
-    public function test_acumular_com_negativos()
+    public function test_acumular_com_negativos(): void
     {
         $service = new AcumularIndices();
          $percentuais = $this->getPercentuais();
@@ -34,7 +34,7 @@ class AcumularIndicesTest extends TestCase
      * Retorna o IGPM de 07/1994 até 12/2020
      * @return string[]
      */
-    private function getPercentuais()
+    private function getPercentuais(): array
     {
         return ['4.33', '3.94', '1.75', '1.82', '2.85', '0.84', '0.92', '1.39', '1.12', '2.10', '0.58', '2.46', '1.82',
             '2.20', '-0.71', '0.52', '1.20', '0.71', '1.73', '0.97', '0.40', '0.32', '1.55', '1.02', '1.35', '0.28',

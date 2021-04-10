@@ -13,7 +13,7 @@ use Cake\TestSuite\TestCase;
 class AtualizacaoMonetariaTest extends TestCase
 {
 
-    public function test_construct()
+    public function test_construct(): void
     {
         $atualizacao = new AtualizacaoMonetaria('Relação de Despesas');
 
@@ -48,7 +48,7 @@ class AtualizacaoMonetariaTest extends TestCase
         $this->assertInstanceOf(AtualizacaoMonetaria::class, $atualizacao);
     }
 
-    public function test_get_data_fim_mes_futuro()
+    public function test_get_data_fim_mes_futuro(): void
     {
         $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
         $dataFim = $gerador->getDataFimMes(
@@ -58,7 +58,7 @@ class AtualizacaoMonetariaTest extends TestCase
         $this->assertEquals(new \DateTimeImmutable('2020-01-31'), $dataFim);
     }
 
-    public function test_get_data_fim_mesmo_mes()
+    public function test_get_data_fim_mesmo_mes(): void
     {
         $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
         $dataFim = $gerador->getDataFimMes(
@@ -68,7 +68,7 @@ class AtualizacaoMonetariaTest extends TestCase
         $this->assertEquals(new \DateTimeImmutable('2020-01-15'), $dataFim);
     }
 
-    public function test_pular_mes()
+    public function test_pular_mes(): void
     {
         $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
         $proximoMes = $gerador->pularMes(new \DateTimeImmutable('2020-03-01'));

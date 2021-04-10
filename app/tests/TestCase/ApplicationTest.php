@@ -34,7 +34,7 @@ class ApplicationTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testBootstrap()
+    public function testBootstrap(): void
     {
         $app = new Application(dirname(dirname(__DIR__)) . '/config');
         $app->bootstrap();
@@ -51,7 +51,7 @@ class ApplicationTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testBootstrapPluginWithoutHalt()
+    public function testBootstrapPluginWithoutHalt(): void
     {
         $this->expectException(InvalidArgumentException::class);
 
@@ -71,7 +71,7 @@ class ApplicationTest extends IntegrationTestCase
      *
      * @return void
      */
-    public function testMiddleware()
+    public function testMiddleware(): void
     {
         $app = new Application(dirname(dirname(__DIR__)) . '/config');
         $middleware = new MiddlewareQueue();

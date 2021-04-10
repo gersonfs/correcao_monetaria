@@ -13,7 +13,7 @@ use PHPUnit\Framework\TestCase;
 class ParcelaTest extends TestCase
 {
 
-    public function test_construct()
+    public function test_construct(): void
     {
         $dataInicio = new \DateTimeImmutable('2020-01-01');
         $dataFim = new \DateTimeImmutable('2020-04-30');
@@ -43,10 +43,10 @@ class ParcelaTest extends TestCase
         );
 
         $indices = [
-            ['mes' => 1, 'ano' => 2020, 'indice' => 0.48],
-            ['mes' => 2, 'ano' => 2020, 'indice' => -0.04],
-            ['mes' => 3, 'ano' => 2020, 'indice' => 1.24],
-            ['mes' => 4, 'ano' => 2020, 'indice' => 0.8],
+            ['data' => new \DateTimeImmutable('2020-01-01'), 'indice' => '0.48'],
+            ['data' => new \DateTimeImmutable('2020-02-01'), 'indice' => '-0.04'],
+            ['data' => new \DateTimeImmutable('2020-03-01'), 'indice' => '1.24'],
+            ['data' => new \DateTimeImmutable('2020-04-01'), 'indice' => '0.8'],
         ];
         $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria($indices));
 

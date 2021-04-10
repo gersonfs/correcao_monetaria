@@ -3,6 +3,7 @@ parameters:
     treatPhpDocTypesAsCertain: false
     paths:
         - src
+        - tests/TestCase
     excludes_analyse:
         - src/Console/Installer.php
 

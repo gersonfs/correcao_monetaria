@@ -6,7 +6,7 @@ namespace App\Dominio\AtualizacaoMonetaria\Parcela;
 
 use App\Dominio\Indice\TipoIndice;
 
-class IndiceMensal
+class IndiceMensal implements Indice
 {
     private TipoIndice $tipo;
     private \DateTimeImmutable $dataInicio;
