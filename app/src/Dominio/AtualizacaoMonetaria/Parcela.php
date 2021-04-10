@@ -22,7 +22,12 @@ class Parcela
     /**
      * Parcela constructor.
      *
-     * @param \App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo[] $dataInicio
+     * @param \DateTimeImmutable $dataInicio
+     * @param \DateTimeImmutable $dataFim
+     * @param string $descricao
+     * @param float $valor
+     * @param \App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo[] $indices
+     * @param \App\Dominio\AtualizacaoMonetaria\Parcela\Juros $juros
      */
     public function __construct(
         \DateTimeImmutable $dataInicio,
