@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\Indice;
-
 
 class TipoIndice
 {
@@ -11,11 +10,23 @@ class TipoIndice
     /**
      * @var string[]
      */
-    private array $tipos = ['IGPM', 'TR', 'INPC', 'IPC/IBGE', 'IPC/FIPE', 'INPC/IBGE', 'IPC-R-IBGE', 'IPCA-E/ibge(%)', 'UFIR', 'SELIC', 'OUTRO'];
+    private array $tipos = [
+        'IGPM',
+        'TR',
+        'INPC',
+        'IPC/IBGE',
+        'IPC/FIPE',
+        'INPC/IBGE',
+        'IPC-R-IBGE',
+        'IPCA-E/ibge(%)',
+        'UFIR',
+        'SELIC',
+        'OUTRO',
+    ];
 
     private function __construct(string $tipo)
     {
-        if(!in_array($tipo, $this->tipos)) {
+        if (!in_array($tipo, $this->tipos)) {
             throw new \InvalidArgumentException('Tipo de índice inválido!');
         }
         $this->tipo = $tipo;
@@ -25,5 +36,4 @@ class TipoIndice
     {
         return new self('IGPM');
     }
-
 }

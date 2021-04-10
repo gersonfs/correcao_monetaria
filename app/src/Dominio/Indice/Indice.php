@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\Indice;
-
 
 class Indice
 {
@@ -24,6 +23,7 @@ class Indice
         $inicio = new \DateTime("{$ano}-{$mes}-01 00:00:00");
         $numeroDias = $inicio->format('t');
         $fim = new \DateTime("{$ano}-{$mes}-{$numeroDias} 00:00:00");
+
         return new self($inicio, $fim, $percentual, $tipoIndice);
     }
 
@@ -36,5 +36,4 @@ class Indice
     {
         return (string)((float)$this->percentual / 100);
     }
-
 }

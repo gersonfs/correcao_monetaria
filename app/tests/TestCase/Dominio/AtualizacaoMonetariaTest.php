@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Test\TestCase\Dominio;
 
@@ -12,7 +13,6 @@ use Cake\TestSuite\TestCase;
 
 class AtualizacaoMonetariaTest extends TestCase
 {
-
     public function test_construct(): void
     {
         $atualizacao = new AtualizacaoMonetaria('Relação de Despesas');
@@ -26,7 +26,7 @@ class AtualizacaoMonetariaTest extends TestCase
                 $dataInicio,
                 $dataFim,
                 true
-            )
+            ),
         ];
 
         $juros = new Juros(

@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\AtualizacaoMonetaria\Parcela;
-
 
 use App\Dominio\Indice\TipoIndice;
 
@@ -13,8 +12,12 @@ class IndicePeriodo
     private \DateTimeImmutable $diaFim;
     private bool $proRata;
 
-    public function __construct(TipoIndice $tipo, \DateTimeImmutable $diaInicio, \DateTimeImmutable $diaFim, bool $proRata)
-    {
+    public function __construct(
+        TipoIndice $tipo,
+        \DateTimeImmutable $diaInicio,
+        \DateTimeImmutable $diaFim,
+        bool $proRata
+    ) {
         $this->tipo = $tipo;
         $this->diaInicio = $diaInicio;
         $this->diaFim = $diaFim;
@@ -40,6 +43,4 @@ class IndicePeriodo
     {
         return $this->proRata;
     }
-
-
 }

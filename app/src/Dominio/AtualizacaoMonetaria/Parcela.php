@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\AtualizacaoMonetaria;
-
 
 use App\Dominio\AtualizacaoMonetaria\Parcela\Juros;
 use App\Dominio\Indice\AcumularIndices;
@@ -10,7 +9,6 @@ use App\Dominio\Indice\GeradorIndice;
 
 class Parcela
 {
-
     private \DateTimeImmutable $dataInicio;
     private \DateTimeImmutable $dataFim;
     private string $descricao;
@@ -23,7 +21,8 @@ class Parcela
 
     /**
      * Parcela constructor.
-     * @param \App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo[] $indices
+     *
+     * @param \App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo[] $dataInicio
      */
     public function __construct(
         \DateTimeImmutable $dataInicio,
@@ -31,8 +30,8 @@ class Parcela
         string $descricao,
         float $valor,
         array $indices,
-        Juros $juros)
-    {
+        Juros $juros
+    ) {
         $this->dataInicio = $dataInicio;
         $this->dataFim = $dataFim;
         $this->descricao = $descricao;
@@ -66,11 +65,12 @@ class Parcela
         $indices = [];
         foreach ($this->indices as $periodo) {
             $indicesGerados = $gerador->gerar($periodo);
-            foreach($indicesGerados as $indice) {
+            foreach ($indicesGerados as $indice) {
                 $indices[] = $indice->getIndice();
             }
         }
         $acumular = new AcumularIndices();
+
         return round($acumular->acumular($indices), $casasDecimais);
     }
 
@@ -83,5 +83,4 @@ class Parcela
     {
         return round($this->valor * $indice, $casasDecimais) - $this->valor;
     }
-
 }

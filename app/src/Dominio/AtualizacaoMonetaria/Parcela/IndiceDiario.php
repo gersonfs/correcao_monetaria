@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\AtualizacaoMonetaria\Parcela;
-
 
 use App\Dominio\Indice\TipoIndice;
 
@@ -16,8 +15,7 @@ class IndiceDiario implements Indice
         TipoIndice $tipo,
         \DateTimeImmutable $data,
         string $indice
-    )
-    {
+    ) {
         $this->tipo = $tipo;
         $this->data = $data;
         $this->indice = $indice;
@@ -37,5 +35,4 @@ class IndiceDiario implements Indice
     {
         return $this->indice;
     }
-
 }

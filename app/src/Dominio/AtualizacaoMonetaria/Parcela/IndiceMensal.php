@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\AtualizacaoMonetaria\Parcela;
-
 
 use App\Dominio\Indice\TipoIndice;
 
@@ -19,8 +18,8 @@ class IndiceMensal implements Indice
         \DateTimeImmutable $dataInicio,
         \DateTimeImmutable $datafim,
         string $indice,
-        bool $proRata)
-    {
+        bool $proRata
+    ) {
         $this->tipo = $tipo;
         $this->dataInicio = $dataInicio;
         $this->dataFim = $datafim;
@@ -59,6 +58,7 @@ class IndiceMensal implements Indice
         }
 
         $indiceDiario = $this->indice / 30;
+
         return (string)($indiceDiario * $diasIntervalo);
     }
 
@@ -66,6 +66,4 @@ class IndiceMensal implements Indice
     {
         return $this->proRata;
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Test\Dominio\AtualizacaoMonetaria\Parcela;
 
@@ -8,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 class IndiceMensalTest extends TestCase
 {
-
     public function test_get_indice_com_pro_rata_inicio()
     {
         $indiceMensal = new IndiceMensal(
@@ -19,7 +19,7 @@ class IndiceMensalTest extends TestCase
             true
         );
         $indiceDiario = 1 / 30;
-        $this->assertEquals( $indiceDiario * 14, $indiceMensal->getIndice() );
+        $this->assertEquals($indiceDiario * 14, $indiceMensal->getIndice());
     }
 
     public function test_get_indice_com_pro_rata_inicio2()
@@ -32,7 +32,7 @@ class IndiceMensalTest extends TestCase
             true
         );
         $indiceDiario = 1 / 30;
-        $this->assertEquals( $indiceDiario * 10, $indiceMensal->getIndice() );
+        $this->assertEquals($indiceDiario * 10, $indiceMensal->getIndice());
     }
 
     public function test_get_indice_com_pro_rata_fim()
@@ -45,7 +45,7 @@ class IndiceMensalTest extends TestCase
             true
         );
         $indiceDiario = 1 / 30;
-        $this->assertEquals( $indiceDiario * 17, $indiceMensal->getIndice() );
+        $this->assertEquals($indiceDiario * 17, $indiceMensal->getIndice());
     }
 
     public function test_get_indice_com_pro_rata_mes_cheio()
@@ -57,7 +57,7 @@ class IndiceMensalTest extends TestCase
             1,
             true
         );
-        $this->assertEquals( 1, $indiceMensal->getIndice() );
+        $this->assertEquals(1, $indiceMensal->getIndice());
     }
 
     public function test_get_indice_sem_pro_rata_fim()
@@ -69,6 +69,6 @@ class IndiceMensalTest extends TestCase
             1,
             false
         );
-        $this->assertEquals( 1, $indiceMensal->getIndice() );
+        $this->assertEquals(1, $indiceMensal->getIndice());
     }
 }

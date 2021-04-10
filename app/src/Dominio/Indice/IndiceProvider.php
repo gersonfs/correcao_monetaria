@@ -1,9 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\Indice;
-
-use App\Dominio\Indice\TipoIndice;
 
 interface IndiceProvider
 {

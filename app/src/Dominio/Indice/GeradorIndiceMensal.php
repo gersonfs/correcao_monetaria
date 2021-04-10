@@ -1,16 +1,13 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\Indice;
 
-
 use App\Dominio\AtualizacaoMonetaria\Parcela\IndiceMensal;
 use App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo;
-use App\Dominio\Indice\TipoIndice;
 
 class GeradorIndiceMensal implements GeradorIndice
 {
-
     private IndiceProvider $provider;
 
     public function __construct(IndiceProvider $provider)
@@ -61,7 +58,7 @@ class GeradorIndiceMensal implements GeradorIndice
     public function getDataFimMes(\DateTimeImmutable $dataAtual, \DateTimeImmutable $dataFim): \DateTimeImmutable
     {
         $isUltimoMes = $dataAtual->format('Y-m') === $dataFim->format('Y-m');
-        if($isUltimoMes) {
+        if ($isUltimoMes) {
             return clone $dataFim;
         }
 

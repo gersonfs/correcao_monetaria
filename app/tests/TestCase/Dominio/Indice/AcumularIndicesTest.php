@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Test\TestCase\Dominio\Indice;
 
@@ -9,7 +10,6 @@ use Cake\TestSuite\TestCase;
 
 class AcumularIndicesTest extends TestCase
 {
-
     public function test_acumular_from_indices(): void
     {
         $service = new AcumularIndices();
@@ -32,6 +32,7 @@ class AcumularIndicesTest extends TestCase
 
     /**
      * Retorna o IGPM de 07/1994 até 12/2020
+     *
      * @return string[]
      */
     private function getPercentuais(): array

@@ -1,8 +1,7 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio;
-
 
 use App\Dominio\AtualizacaoMonetaria\Parcela;
 
@@ -25,5 +24,4 @@ class AtualizacaoMonetaria
     {
         $this->parcelas[] = $parcela;
     }
-
 }

@@ -1,13 +1,10 @@
 <?php
-
+declare(strict_types=1);
 
 namespace App\Dominio\Indice;
 
-use App\Dominio\Indice\TipoIndice;
-
 class IndiceProviderMemoria implements IndiceProvider
 {
-
     /**
      * @var array<int, array{'data': \DateTimeImmutable, 'indice': string}>
      */
@@ -30,8 +27,10 @@ class IndiceProviderMemoria implements IndiceProvider
         );
         if ($achou) {
             $primeiroResultado = array_pop($achou);
+
             return $primeiroResultado['indice'];
         }
-        return "0";
+
+        return '0';
     }
 }

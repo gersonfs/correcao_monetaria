@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Test\TestCase\Dominio\AtualizacaoMonetaria;
 
@@ -11,7 +12,6 @@ use Cake\TestSuite\TestCase;
 
 class GeradorIndiceMensalTest extends TestCase
 {
-
     public function test_gerar(): void
     {
         $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
@@ -33,6 +33,5 @@ class GeradorIndiceMensalTest extends TestCase
             new IndiceMensal($igpm, new \DateTimeImmutable('2020-03-01'), new \DateTimeImmutable('2020-03-28'), '0', true),
         ];
         $this->assertEquals($indicesEsperados, $indices);
-
     }
 }

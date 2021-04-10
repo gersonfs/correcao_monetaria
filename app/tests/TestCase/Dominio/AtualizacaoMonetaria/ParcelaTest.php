@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Test\TestCase\Dominio\AtualizacaoMonetaria;
 
@@ -12,7 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 class ParcelaTest extends TestCase
 {
-
     public function test_construct(): void
     {
         $dataInicio = new \DateTimeImmutable('2020-01-01');
@@ -24,7 +24,7 @@ class ParcelaTest extends TestCase
                 $dataInicio,
                 $dataFim,
                 false
-            )
+            ),
         ];
 
         $juros = new Juros(

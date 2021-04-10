@@ -36,9 +36,13 @@ jobs:
       run: |
           cd app && composer install --no-progress --no-suggest -o --no-ansi --no-interaction
 
+    - name: cs-check
+      run: |
+          cd app && composer cs-check
+
     - name: PHPStan
       run: |
-          cd app && composer stan
+        cd app && composer stan
 
     - name: PHPUnit
       run: |
