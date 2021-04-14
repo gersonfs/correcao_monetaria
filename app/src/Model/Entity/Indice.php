@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenDate $data
  * @property string $indice
  */
-class Index extends Entity
+class Indice extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().

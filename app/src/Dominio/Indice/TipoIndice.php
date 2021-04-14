@@ -5,6 +5,8 @@ namespace App\Dominio\Indice;
 
 class TipoIndice
 {
+    public const TIPO_IGPM = 'IGPM';
+
     private string $tipo;
 
     /**
@@ -31,6 +33,11 @@ class TipoIndice
             throw new \InvalidArgumentException('Tipo de índice inválido!');
         }
         $this->tipo = $tipo;
+    }
+
+    public function getTipo(): string
+    {
+        return $this->tipo;
     }
 
     public static function buildIGPM(): self

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
+use App\Dominio\Indice\TipoIndice;
 use App\Model\Table\IndicesTable;
 use Cake\TestSuite\TestCase;
 
@@ -56,8 +57,10 @@ class IndicesTableTest extends TestCase
      *
      * @return void
      */
-    public function testValidationDefault(): void
+    public function test_get_indice(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        $tipo = TipoIndice::buildIGPM();
+        $indice = $this->Indices->getIndice($tipo, new \DateTimeImmutable('2021-04-01'));
+        $this->assertEquals('1.500000', $indice);
     }
 }

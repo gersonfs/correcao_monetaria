@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Test\Fixture;
 
+use App\Dominio\Indice\TipoIndice;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
@@ -40,8 +41,8 @@ class IndicesFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'tipo' => 'Lorem ipsum dolor ',
-                'data' => '2021-04-14',
+                'tipo' => TipoIndice::TIPO_IGPM,
+                'data' => '2021-04-01',
                 'indice' => 1.5,
             ],
         ];

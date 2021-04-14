@@ -3,27 +3,30 @@ declare(strict_types=1);
 
 namespace App\Model\Table;
 
+use App\Dominio\Indice\IndiceProvider;
+use App\Dominio\Indice\TipoIndice;
+use App\Model\Entity\Indice;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
  * Indices Model
  *
- * @method \App\Model\Entity\Index newEmptyEntity()
- * @method \App\Model\Entity\Index newEntity(array $data, array $options = [])
- * @method \App\Model\Entity\Index[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Index get($primaryKey, $options = [])
- * @method \App\Model\Entity\Index findOrCreate($search, ?callable $callback = null, $options = [])
- * @method \App\Model\Entity\Index patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Index[] patchEntities(iterable $entities, array $data, array $options = [])
- * @method \App\Model\Entity\Index|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Index saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Index[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Index[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
- * @method \App\Model\Entity\Index[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
- * @method \App\Model\Entity\Index[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Indice newEmptyEntity()
+ * @method \App\Model\Entity\Indice newEntity(array $data, array $options = [])
+ * @method \App\Model\Entity\Indice[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Indice get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Indice findOrCreate($search, ?callable $callback = null, $options = [])
+ * @method \App\Model\Entity\Indice patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Indice[] patchEntities(iterable $entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Indice|false save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Indice saveOrFail(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Indice[]|\Cake\Datasource\ResultSetInterface|false saveMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Indice[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Indice[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
+ * @method \App\Model\Entity\Indice[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
  */
-class IndicesTable extends Table
+class IndicesTable extends Table implements IndiceProvider
 {
     /**
      * Initialize method
@@ -35,6 +38,7 @@ class IndicesTable extends Table
     {
         parent::initialize($config);
 
+        $this->setEntityClass(Indice::class);
         $this->setTable('indices');
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
@@ -69,5 +73,23 @@ class IndicesTable extends Table
             ->notEmptyString('indice');
 
         return $validator;
+    }
+
+    public function getIndice(TipoIndice $tipo, \DateTimeImmutable $data): string
+    {
+        /** @var \App\Model\Entity\Indice|null $indice */
+        $indice = $this->find()
+            ->where([
+                'data' => $data->format('Y-m-01'),
+                'tipo' => $tipo->getTipo()
+            ])
+            ->first();
+
+        if(empty($indice)) {
+            $msg = 'Índice ' . $tipo->getTipo() . ' do mês ' . $data->format('m/Y') . ' não encontrado!';
+            throw new \RuntimeException($msg);
+        }
+
+        return (string)$indice->indice;
     }
 }

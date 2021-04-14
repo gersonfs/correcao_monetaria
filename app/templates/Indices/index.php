@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Index[]|\Cake\Collection\CollectionInterface $indices
+ * @var \App\Model\Entity\Indice[]|\Cake\Collection\CollectionInterface $indices
  */
 ?>
 <div class="indices index content">

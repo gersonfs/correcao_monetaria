@@ -7,7 +7,7 @@ namespace App\Controller;
  * Indices Controller
  *
  * @property \App\Model\Table\IndicesTable $Indices
- * @method \App\Model\Entity\Index[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Indice[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
 class IndicesController extends AppController
 {

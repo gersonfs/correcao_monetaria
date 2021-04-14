@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Index $index
+ * @var \App\Model\Entity\Indice $index
  */
 ?>
 <div class="row">
