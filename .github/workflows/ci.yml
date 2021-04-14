@@ -47,7 +47,7 @@ jobs:
     - name: Setup MySQL
       run: |
         sudo systemctl start mysql.service
-        mysql -uroot -e "CREATE DATABASE correcao_sis; CREATE DATABASE testes;"
+        mysql -uroot -proot -e "CREATE DATABASE correcao_sis; CREATE DATABASE testes;"
         cd app && ./bin/cake migrations migrate
 
     - name: PHPUnit
