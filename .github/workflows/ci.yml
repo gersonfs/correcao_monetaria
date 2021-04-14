@@ -44,6 +44,11 @@ jobs:
       run: |
         cd app && composer stan
 
+    - name: Setup MySQL
+      run: |
+        mysql -uroot -h127.0.0.1 -e "CREATE DATABASE correcao_sis; CREATE DATABASE testes;"
+        cd app && ./bin/cake migrations migrate
+
     - name: PHPUnit
       run: |
         cd app && composer test
