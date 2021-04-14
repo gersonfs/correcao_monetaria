@@ -1,6 +1,7 @@
 parameters:
     level: 7
     treatPhpDocTypesAsCertain: false
+    checkMissingIterableValueType: false
     paths:
         - src
         - tests/TestCase
