@@ -81,11 +81,11 @@ class IndicesTable extends Table implements IndiceProvider
         $indice = $this->find()
             ->where([
                 'data' => $data->format('Y-m-01'),
-                'tipo' => $tipo->getTipo()
+                'tipo' => $tipo->getTipo(),
             ])
             ->first();
 
-        if(empty($indice)) {
+        if (empty($indice)) {
             $msg = 'Índice ' . $tipo->getTipo() . ' do mês ' . $data->format('m/Y') . ' não encontrado!';
             throw new \RuntimeException($msg);
         }
