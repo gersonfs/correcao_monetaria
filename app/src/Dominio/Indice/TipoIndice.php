@@ -10,23 +10,24 @@ class TipoIndice
     /**
      * @var string[]
      */
-    private array $tipos = [
-        'IGPM',
-        'TR',
-        'INPC',
-        'IPC/IBGE',
-        'IPC/FIPE',
-        'INPC/IBGE',
-        'IPC-R-IBGE',
-        'IPCA-E/ibge(%)',
-        'UFIR',
-        'SELIC',
-        'OUTRO',
+    private static array $tipos = [
+        'IGPM' => 'IGPM',
+        'TR' => 'TR',
+        'INPC' => 'INPC',
+        'IPC/IBGE' => 'IPC/IBGE',
+        'IPC/FIPE' => 'IPC/FIPE',
+        'INPC/IBGE' => 'INPC/IBGE',
+        'IPC-R-IBGE' => 'IPC-R-IBGE',
+        'IPCA-E/IBGE' => 'IPCA-E/IBGE',
+        'UFIR' => 'UFIR',
+        'SELIC' => 'SELIC',
+        'OUTRO' => 'OUTRO',
     ];
 
     private function __construct(string $tipo)
     {
-        if (!in_array($tipo, $this->tipos)) {
+        $indices = array_keys(self::$tipos);
+        if (!in_array($tipo, $indices)) {
             throw new \InvalidArgumentException('Tipo de índice inválido!');
         }
         $this->tipo = $tipo;
@@ -35,5 +36,13 @@ class TipoIndice
     public static function buildIGPM(): self
     {
         return new self('IGPM');
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public static function listIndices(): array
+    {
+        return self::$tipos;
     }
 }

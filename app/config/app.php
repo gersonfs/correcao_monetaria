@@ -76,7 +76,7 @@ return [
      *   You should treat it as extremely sensitive data.
      */
     'Security' => [
-        'salt' => 'dsjfndkjfhdjkhf23243434',
+        'salt' => 'sdfkdsjfgiee4h534543543543nefnfdjgdf',
     ],
 
     /*
@@ -294,6 +294,10 @@ return [
             'driver' => Mysql::class,
             'persistent' => false,
             'timezone' => 'SYSTEM',
+            'username' => 'root',
+            'password' => 'root',
+            'database' => 'correcao_sis',
+            'host' => 'localhost',
 
             /*
              * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
@@ -339,6 +343,10 @@ return [
             'timezone' => 'SYSTEM',
             'encoding' => 'utf8mb4',
             'flags' => [],
+            'username' => 'root',
+            'password' => 'root',
+            'database' => 'testes',
+            'host' => 'localhost',
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
             'log' => false,
