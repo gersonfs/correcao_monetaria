@@ -9,6 +9,13 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/cakedc/cakephp-phpstan" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/phpstan/phpstan" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/brick/varexporter" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php73" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -39,13 +39,16 @@ class AtualizacaoMonetariaTest extends TestCase
             true
         );
 
+        $gerador = new GeradorIndiceMensal(new IndiceProviderMemoria());
+
         $atualizacao->adicionarParcela(new Parcela(
             $dataInicio,
             $dataFim,
             'IPTU',
             1000,
             $indices,
-            $juros
+            $juros,
+            $gerador
         ));
 
         $this->assertInstanceOf(AtualizacaoMonetaria::class, $atualizacao);

@@ -18,6 +18,7 @@ class Parcela
      */
     private array $indices;
     private Juros $juros;
+    private GeradorIndice $geradorIndice;
 
     /**
      * Parcela constructor.
@@ -28,6 +29,7 @@ class Parcela
      * @param float $valor
      * @param \App\Dominio\AtualizacaoMonetaria\Parcela\IndicePeriodo[] $indices
      * @param \App\Dominio\AtualizacaoMonetaria\Parcela\Juros $juros
+     * @param \App\Dominio\Indice\GeradorIndice $geradorIndice
      */
     public function __construct(
         \DateTimeImmutable $dataInicio,
@@ -35,7 +37,8 @@ class Parcela
         string $descricao,
         float $valor,
         array $indices,
-        Juros $juros
+        Juros $juros,
+        GeradorIndice $geradorIndice
     ) {
         $this->dataInicio = $dataInicio;
         $this->dataFim = $dataFim;
@@ -43,6 +46,7 @@ class Parcela
         $this->valor = $valor;
         $this->indices = $indices;
         $this->juros = $juros;
+        $this->geradorIndice = $geradorIndice;
     }
 
     public function getDataInicio(): \DateTimeImmutable
@@ -65,11 +69,11 @@ class Parcela
         return $this->valor;
     }
 
-    public function getIndiceCorrecao(GeradorIndice $gerador, int $casasDecimais): float
+    public function getIndiceCorrecao(int $casasDecimais = 7): float
     {
         $indices = [];
         foreach ($this->indices as $periodo) {
-            $indicesGerados = $gerador->gerar($periodo);
+            $indicesGerados = $this->geradorIndice->gerar($periodo);
             foreach ($indicesGerados as $indice) {
                 $indices[] = $indice->getIndice();
             }
@@ -79,13 +83,28 @@ class Parcela
         return round($acumular->acumular($indices), $casasDecimais);
     }
 
-    public function getValorCorrigido(float $indice, int $casasDecimais = 2): float
+    public function getValorCorrigido(int $casasDecimais = 2): float
     {
-        return round($this->valor * $indice, $casasDecimais);
+        return round($this->valor * $this->getIndiceCorrecao(), $casasDecimais);
     }
 
-    public function getValorCorrecao(float $indice, int $casasDecimais = 2): float
+    public function getValorCorrecao(int $casasDecimais = 2): float
     {
-        return round($this->valor * $indice, $casasDecimais) - $this->valor;
+        return round($this->valor * $this->getIndiceCorrecao(), $casasDecimais) - $this->valor;
+    }
+
+    public function getValorJuros(int $casasDecimais = 2): float
+    {
+        $indice = $this->juros->getIndiceTotal();
+
+        return round($this->valor * ($indice - 1), $casasDecimais);
+    }
+
+    public function getValorAtualizado(int $casasDecimaisValor = 2, int $casasDecimaisIndice = 7): float
+    {
+        $valor = $this->getIndiceCorrecao($casasDecimaisIndice) * $this->valor +
+            $this->getValorJuros();
+
+        return round($valor, $casasDecimaisValor);
     }
 }
